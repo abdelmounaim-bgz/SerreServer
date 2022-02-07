@@ -77,7 +77,7 @@ Sensor.getAll = result => {
 
 Sensor.updateById = (id, Sensor, result) => {
     sql.query(
-        "UPDATE sensor SET node = ?,gwc = ?,LightIntensity = ?, AmbiantTemperature = ?,SoilTemperature = ?, AmbiantRH = ?,humidity2 = ? ,updatedAt = ? WHERE id = ?",
+        "UPDATE sensor SET node = ?,gwc = ?,LightIntensity = ?, AmbiantTemperature = ?,SoilTemperature = ?, AmbiantRH = ?,SoilMoisture = ? ,updatedAt = ? WHERE id = ?",
         [Sensor.node, Sensor.gwc, Sensor.LightIntensity, Sensor.AmbiantTemperature, Sensor.SoilTemperature, Sensor.AmbiantRH, Sensor.SoilMoisture, Sensor.updatedAt, id],
         (err, res) => {
             if (err) {
