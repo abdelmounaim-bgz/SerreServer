@@ -1,5 +1,5 @@
 module.exports = {
-    HOST: "localhost",
+    HOST: "192.168.12.51",
     USER: "root",
     PASSWORD: "ABc@2021",
     DB: "Users"    
