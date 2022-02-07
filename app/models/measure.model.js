@@ -3,10 +3,12 @@ const sql = require("./db.js");
 // constructor
 const Measure = function (Measure) {
     this.node = Measure.node;
-    this.temp1 = Measure.temp1;
-    this.temp2 = Measure.temp2;
-    this.humidity1 = Measure.humidity1;
-    this.humidity2 = Measure.humidity2;
+    this.gwc = Measure.gwc;
+    this.LightIntensity = Measure.LightIntensity;
+    this.AmbiantTemperature = Measure.AmbiantTemperature;
+    this.SoilTemperature = Measure.SoilTemperature;
+    this.AmbiantRH = Measure.AmbiantRH;
+    this.SoilMoisture = Measure.SoilMoisture;
     this.date = Measure.date;
 };
 
@@ -57,8 +59,8 @@ Measure.getAll = result => {
 
 Measure.updateById = (id, Measure, result) => {
     sql.query(
-        "UPDATE measure SET node = ?, temp1 = ?,temp2 = ?, humidity1 = ?,humidity2 = ? WHERE id = ?",
-        [Measure.node, Measure.temp1, Measure.temp2, Measure.humidity1, Measure.humidity2, id],
+        "UPDATE measure SET node = ?,gwc = ?,LightIntensity = ?, AmbiantTemperature = ?,SoilTemperature = ?, AmbiantRH = ?,SoilMoisture = ? WHERE id = ?",
+        [Measure.node, Measure.gwc, Measure.LightIntensity, Measure.AmbiantTemperature, Measure.SoilTemperature, Measure.AmbiantRH, Measure.SoilMoisture, id],
         (err, res) => {
             if (err) {
                 console.log("error: ", err);

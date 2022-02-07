@@ -11,10 +11,12 @@ exports.create = (req, res) => {
     // Create a Measure
     const measure = new Measure({
         node: req.body.node,
-        temp1: req.body.temp1,
-        temp2: req.body.temp2,
-        humidity1: req.body.humidity1,
-        humidity2: req.body.humidity2,
+        gwc: req.body.GWC,
+        LightIntensity: req.body.LightIntensity,
+        AmbiantTemperature: req.body.AmbiantTemperature,
+        SoilTemperature: req.body.SoilTemperature,
+        AmbiantRH: req.body.AmbiantRH,
+        SoilMoisture: req.body.SoilMoisture,
     });
 
     // Save Measure in the database

@@ -29,19 +29,23 @@ exports.create = (req, res) => {
             // Create a measure
             const measure = new Measure({
                 node: req.body.deviceName,
-                temp1: req.body.object.temp1,
-                temp2: req.body.object.temp2,
-                humidity1: req.body.object.humidity1,
-                humidity2: req.body.object.humidity2,
+                gwc: req.body.object.GWC,
+                LightIntensity: req.body.object.LightIntensity,
+                AmbiantTemperature: req.body.object.AmbiantTemperature,
+                SoilTemperature: req.body.object.SoilTemperature,
+                AmbiantRH: req.body.object.AmbiantRH,
+                SoilMoisture: req.body.object.SoilMoisture,
                 date: new Date().toISOString()
             });
             // updating the sensors infos
             const sensor = new Sensor({
                 node: data.node,
-                temp1: req.body.object.temp1 == null ? data.temp1 : req.body.object.temp1,
-                temp2: req.body.object.temp2 == null ? data.temp2 : req.body.object.temp2,
-                humidity1: req.body.object.humidity1 == null ? data.humidity1 : req.body.object.humidity1,
-                humidity2: req.body.object.humidity2 == null ? data.humidity2 : req.body.object.humidity2,
+                gwc: req.body.object.GWC == null ? data.gwc : req.body.object.GWC,
+                LightIntensity: req.body.object.LightIntensity == null ? data.LightIntensity : req.body.object.LightIntensity,
+                AmbiantTemperature: req.body.object.AmbiantTemperature == null ? data.AmbiantTemperature : req.body.object.AmbiantTemperature,
+                SoilTemperature: req.body.object.SoilTemperature == null ? data.SoilTemperature : req.body.object.SoilTemperature,
+                AmbiantRH: req.body.object.AmbiantRH == null ? data.AmbiantRH : req.body.object.AmbiantRH,
+                SoilMoisture: req.body.object.SoilMoisture == null ? data.SoilMoisture : req.body.object.SoilMoisture,
                 updatedAt: new Date().toISOString()
             })
             Sensor.updateById(

@@ -3,10 +3,12 @@ const sql = require("./db.js");
 // constructor
 const Sensor = function (Sensor) {
     this.node = Sensor.node;
-    this.temp1 = Sensor.temp1;
-    this.temp2 = Sensor.temp2;
-    this.humidity1 = Sensor.humidity1;
-    this.humidity2 = Sensor.humidity2;
+    this.gwc = Sensor.gwc;
+    this.LightIntensity = Sensor.LightIntensity;
+    this.AmbiantTemperature = Sensor.AmbiantTemperature;
+    this.SoilTemperature = Sensor.SoilTemperature;
+    this.AmbiantRH = Sensor.AmbiantRH;
+    this.SoilMoisture = Sensor.SoilMoisture;
     this.updatedAt = Sensor.updatedAt;
 };
 
@@ -75,8 +77,8 @@ Sensor.getAll = result => {
 
 Sensor.updateById = (id, Sensor, result) => {
     sql.query(
-        "UPDATE sensor SET node = ?, temp1 = ?,temp2 = ?, humidity1 = ?,humidity2 = ? ,updatedAt = ? WHERE id = ?",
-        [Sensor.node, Sensor.temp1, Sensor.temp2, Sensor.humidity1, Sensor.humidity2, Sensor.updatedAt, id],
+        "UPDATE sensor SET node = ?,gwc = ?,LightIntensity = ?, AmbiantTemperature = ?,SoilTemperature = ?, AmbiantRH = ?,humidity2 = ? ,updatedAt = ? WHERE id = ?",
+        [Sensor.node, Sensor.gwc, Sensor.LightIntensity, Sensor.AmbiantTemperature, Sensor.SoilTemperature, Sensor.AmbiantRH, Sensor.SoilMoisture, Sensor.updatedAt, id],
         (err, res) => {
             if (err) {
                 console.log("error: ", err);
