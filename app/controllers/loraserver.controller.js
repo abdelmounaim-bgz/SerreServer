@@ -31,9 +31,9 @@ exports.create = (req, res) => {
                 node: req.body.deviceName,
                 gwc: req.body.object.GWC,
                 LightIntensity: req.body.object.LightIntensity,
-                AmbiantTemperature: req.body.object.AmbiantTemperature,
+                AmbiantTemperature: req.body.object.AmbientTemperature,
                 SoilTemperature: req.body.object.SoilTemperature,
-                AmbiantRH: req.body.object.AmbiantRH,
+                AmbiantRH: req.body.object.AmbientRH,
                 SoilMoisture: req.body.object.SoilMoisture,
                 date: new Date().toISOString()
             });
@@ -42,9 +42,9 @@ exports.create = (req, res) => {
                 node: data.node,
                 gwc: req.body.object.GWC == null ? data.gwc : req.body.object.GWC,
                 LightIntensity: req.body.object.LightIntensity == null ? data.LightIntensity : req.body.object.LightIntensity,
-                AmbiantTemperature: req.body.object.AmbiantTemperature == null ? data.AmbiantTemperature : req.body.object.AmbiantTemperature,
+                AmbiantTemperature: req.body.object.AmbientTemperature == null ? data.AmbiantTemperature : req.body.object.AmbientTemperature,
                 SoilTemperature: req.body.object.SoilTemperature == null ? data.SoilTemperature : req.body.object.SoilTemperature,
-                AmbiantRH: req.body.object.AmbiantRH == null ? data.AmbiantRH : req.body.object.AmbiantRH,
+                AmbiantRH: req.body.object.AmbientRH == null ? data.AmbiantRH : req.body.object.AmbientRH,
                 SoilMoisture: req.body.object.SoilMoisture == null ? data.SoilMoisture : req.body.object.SoilMoisture,
                 updatedAt: new Date().toISOString()
             })
