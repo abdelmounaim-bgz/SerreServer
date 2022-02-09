@@ -11,6 +11,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 require("./app/routes/sensor.routes.js")(app);
 require("./app/routes/measure.routes.js")(app);
 require("./app/routes/loradata.routes.js")(app);
+require("./app/routes/SerreSensor.routes.js")(app);
+require("./app/routes/historique.routes.js")(app);
 // simple route
 app.get("/", (req, res) => {
     res.json({ message: "no get in here" });

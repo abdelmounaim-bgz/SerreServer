@@ -1,1 +1,9 @@
-{"deviceName" : "test","object":{"temp1":10,"temp2":15,"humidity1":66,"humidity2":70}}
+{
+    "deviceName": "test",
+    "object": {
+        "temp1": 10,
+        "temp2": 15,
+        "humidity1": 66,
+        "humidity2": 70
+    }
+}
