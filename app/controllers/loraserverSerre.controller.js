@@ -37,7 +37,7 @@ exports.create = (req, res) => {
         refSensor.forEach(ref => {
             const historique = new Historique({
                 id: ref.ref,
-                valeur: req.body.object[ref.param],
+                valeur: req.body.object[ref.param] == "Wet" ? 1.3 : req.body.object[ref.param] == "Dry" ? 0.0 : req.body.object[ref.param],
                 date: new Date()
             });
             const serreSensor = new SerreSensor({
