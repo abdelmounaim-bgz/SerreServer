@@ -13,6 +13,7 @@ exports.create = (req, res) => {
         id: req.body.node,
         valeur: req.body.valeur,
         date: req.body.date,
+        node: req.body.node,
     });
 
     // Save SerreSensor in the database

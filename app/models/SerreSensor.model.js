@@ -4,6 +4,7 @@ const SerreSensor = function (SerreSensor) {
     this.id = SerreSensor.id;
     this.date = SerreSensor.date;
     this.valeur = SerreSensor.valeur;
+    this.node = SerreSensor.node;
 };
 
 SerreSensor.create = (newSensor, result) => {

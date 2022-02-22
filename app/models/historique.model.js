@@ -4,6 +4,7 @@ const Historique = function (Historique) {
     this.id = Historique.id;
     this.date = Historique.date;
     this.valeur = Historique.valeur;
+    this.node = Historique.node;
 };
 
 Historique.create = (newHistorique, result) => {

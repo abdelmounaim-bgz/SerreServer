@@ -52,11 +52,11 @@ exports.create = (req, res) => {
                     if (err) {
                         if (err.kind === "not_found") {
                             res.status(404).send({
-                                message: `Not found Customer with id ${req.params.sensorId}.`
+                                message: `Not found node with id ${req.params.sensorId}.`
                             });
                         } else {
                             res.status(500).send({
-                                message: "Error updating Customer with id " + req.params.sensorId
+                                message: "Error updating node with id " + req.params.sensorId
                             });
                         }
                     } else {
