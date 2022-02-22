@@ -35,44 +35,63 @@ exports.create = (req, res) => {
         });
     } else {
         refSensor.forEach(ref => {
-            const historique = new Historique({
-                id: ref.ref,
-                valeur: req.body.object[ref.param] == "Wet" ? 1.3 : req.body.object[ref.param] == "Dry" ? 0.0 : req.body.object[ref.param],
-                date: new Date()
-            });
-            const serreSensor = new SerreSensor({
-                id: ref.ref,
-                valeur: req.body.object[ref.param] == "Wet" ? 1.3 : req.body.object[ref.param] == "Dry" ? 0.0 : req.body.object[ref.param],
-                date: new Date()
-            })
-            SerreSensor.updateById(
-                ref.ref,
-                new SerreSensor(serreSensor),
-                (err, data) => {
+            SerreSensor.findByNode(
+                req.body.deviceName, ref.ref, (err, data) => {
                     if (err) {
                         if (err.kind === "not_found") {
                             res.status(404).send({
-                                message: `Not found node with id ${req.params.sensorId}.`
+                                message: `Not found Sensor with name  ${req.body.object.deviceName},Node is not paired.`
                             });
                         } else {
                             res.status(500).send({
-                                message: "Error updating node with id " + req.params.sensorId
+                                message: "Error retrieving Sensor with id " + req.body.object.deviceName
                             });
                         }
                     } else {
-
-                        // Save Measure in the database
-                        Historique.create(historique, (err, data1) => {
-                            if (err)
-                                res.status(500).send({
-                                    message:
-                                        err.message || "Some error occurred while creating the Measure."
-                                });
-                            else data = data;
+                        const historique = new Historique({
+                            id: ref.ref,
+                            valeur: req.body.object[ref.param] == "Wet" ? 1.3 : req.body.object[ref.param] == "Dry" ? 0.0 : req.body.object[ref.param],
+                            node: data.node,
+                            date: new Date()
                         });
+                        const serreSensor = new SerreSensor({
+                            id: ref.ref,
+                            valeur: req.body.object[ref.param] == "Wet" ? 1.3 : req.body.object[ref.param] == "Dry" ? 0.0 : req.body.object[ref.param],
+                            node: data.node,
+                            date: new Date()
+                        })
+                        SerreSensor.updateById(
+                            ref.ref,
+                            new SerreSensor(serreSensor),
+                            (err, data) => {
+                                if (err) {
+                                    if (err.kind === "not_found") {
+                                        res.status(404).send({
+                                            message: `Not found node with id ${req.params.sensorId}.`
+                                        });
+                                    } else {
+                                        res.status(500).send({
+                                            message: "Error updating node with id " + req.params.sensorId
+                                        });
+                                    }
+                                } else {
+                                    // Save Measure in the database
+                                    Historique.create(historique, (err, data1) => {
+                                        if (err)
+                                            res.status(500).send({
+                                                message:
+                                                    err.message || "Some error occurred while creating the Measure."
+                                            });
+                                        else data = data;
+                                    });
+                                }
+                            }
+                        );
+
+
                     }
                 }
-            );
+            )
         });
         res.send(data);
     }

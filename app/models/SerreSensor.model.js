@@ -38,24 +38,24 @@ SerreSensor.findById = (SensorId, result) => {
         result({ kind: "not_found" }, null);
     });
 };
-// SerreSensor.findByNode = (node, result) => {
-//     sql.query(`SELECT * FROM Sensor WHERE node = "${node}"`, (err, res) => {
-//         if (err) {
-//             console.log("error: ", err);
-//             result(err, null);
-//             return;
-//         }
+SerreSensor.findByNode = (node, id, result) => {
+    sql.query(`SELECT * FROM Sensor WHERE node = "${node}" AND id = "${id}"`, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
 
-//         if (res.length) {
-//             console.log("found Sensor: ", res[0]);
-//             result(null, res[0]);
-//             return;
-//         }
+        if (res.length) {
+            console.log("found Sensor: ", res[0]);
+            result(null, res[0]);
+            return;
+        }
 
-//         // not found Sensor with the id
-//         result({ kind: "not_found" }, null);
-//     });
-// };
+        // not found Sensor with the id
+        result({ kind: "not_found" }, null);
+    });
+};
 
 SerreSensor.getAll = result => {
     sql.query("SELECT * FROM Sensor", (err, res) => {
@@ -72,8 +72,8 @@ SerreSensor.getAll = result => {
 
 SerreSensor.updateById = (id, Sensor, result) => {
     sql.query(
-        "UPDATE Sensor SET date = ?,valeur = ? WHERE id = ?",
-        [Sensor.date, Sensor.valeur, id],
+        "UPDATE Sensor SET date = ?,valeur = ? WHERE id = ? AND node = ?",
+        [Sensor.date, Sensor.valeur, id, Sensor.node],
         (err, res) => {
             if (err) {
                 console.log("error: ", err);

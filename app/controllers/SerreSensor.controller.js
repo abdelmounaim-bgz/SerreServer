@@ -9,15 +9,15 @@ exports.create = (req, res) => {
     }
 
     // Create a SerreSensor
-    const SerreSensor = new SerreSensor({
-        id: req.body.node,
+    const serreSensor = new SerreSensor({
+        id: req.body.id,
         valeur: req.body.valeur,
         date: req.body.date,
         node: req.body.node,
     });
 
     // Save SerreSensor in the database
-    SerreSensor.create(SerreSensor, (err, data) => {
+    SerreSensor.create(serreSensor, (err, data) => {
         if (err)
             res.status(500).send({
                 message:
@@ -39,22 +39,22 @@ exports.findAll = (req, res) => {
     });
 };
 
-// // Find a single SerreSensor with a SerreSensorId
-// exports.findOne = (req, res) => {
-//     SerreSensor.findByNode(req.params.node, (err, data) => {
-//         if (err) {
-//             if (err.kind === "not_found") {
-//                 res.status(404).send({
-//                     message: `Not found SerreSensor with id ${req.params.SerreSensorId}.`
-//                 });
-//             } else {
-//                 res.status(500).send({
-//                     message: "Error retrieving SerreSensor with id " + req.params.SerreSensorId
-//                 });
-//             }
-//         } else res.send(data);
-//     });
-// };
+// Find a single SerreSensor with a SerreSensorId
+exports.findOne = (req, res) => {
+    SerreSensor.findByNode(req.params.node, (err, data) => {
+        if (err) {
+            if (err.kind === "not_found") {
+                res.status(404).send({
+                    message: `Not found SerreSensor with id ${req.params.SerreSensorId}.`
+                });
+            } else {
+                res.status(500).send({
+                    message: "Error retrieving SerreSensor with id " + req.params.SerreSensorId
+                });
+            }
+        } else res.send(data);
+    });
+};
 
 // Update a SerreSensor identified by the SerreSensorId in the request
 exports.update = (req, res) => {
